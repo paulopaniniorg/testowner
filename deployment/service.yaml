@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testowner
+spec:
+  type: ClusterIP
+  selector:
+    app: testowner
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: http

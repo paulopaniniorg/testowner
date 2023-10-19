@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testowner
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testowner
+  template:
+    metadata:
+      labels:
+        app: testowner
+    spec:
+      containers:
+      - name:  testowner
+        image: ghcr.io/paulopaniniorg/testowner:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+      imagePullSecrets:
+      - name: github-secret

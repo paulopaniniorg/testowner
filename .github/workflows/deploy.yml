@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        default: 'uat'
+        type: choice
+        options:
+        - uat
+        - production
+
+jobs:
+  call-workflow-passing-data:
+    uses: paulopaniniorg/workflows/.github/workflows/build-and-deploy.yml@main
+    with:
+      environment: 
+    secrets:
+      API_GITHUB_TOKEN: 
